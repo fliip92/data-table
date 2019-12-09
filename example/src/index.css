@@ -1,5 +1,28 @@
+.App {
+	text-align: center;
+}
+
+.App.dark {
+	background: #000;
+	color: #fff;
+	transition: 0.3s all;
+}
+
+.App.light {
+	background: #fff;
+	color: #000;
+	transition: 0.3s all;
+}
+
+.App p {
+	font-size: 24pt;
+}
+
 body {
+	padding: 0;
   margin: 0;
-  padding: 0;
-  font-family: sans-serif;
+}
+
+.table-container{
+  padding: 60px
 }

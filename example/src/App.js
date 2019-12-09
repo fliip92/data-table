@@ -1,6 +1,7 @@
-import React, { Component } from 'react'
-
+import React from "react";
+import useDarkMode from './useDarkMode'
 import Table from 'data-table'
+
 
 const data = [
   { test1: "testing here", test2: "and here" },
@@ -20,11 +21,26 @@ const schema = {
   ],
   model: ""
 }
-export default class App extends Component {
-  render() {
-    return (
-      <div style={{ height: "100%", padding: "10px" }}>
+
+
+export default () => {
+  const [theme, toggleTheme] = useDarkMode()
+  return (
+    <div
+      style={{
+        background: theme === 'dark' ? '#000' : '#fff',
+        color: theme === 'dark' ? '#fff' : '#000',
+        width: "100%",
+        height: "100vh",
+      }}
+    >
+      <div className="">
+        <i onClick={toggleTheme} className={`far fa-${theme === 'dark' ? 'sun' : 'moon'}`}></i>
+      </div>
+      <div className="table-container">
         <Table
+          minimal={false}
+          dark={theme === "dark"}
           schema={schema}
           entities={data}
           totalResults={data.length}
@@ -32,6 +48,6 @@ export default class App extends Component {
           withSelection={true}
         />
       </div>
-    )
-  }
+    </div>
+  )
 }

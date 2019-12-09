@@ -37,7 +37,9 @@ class body extends Component {
     withSelection: PropTypes.bool,
     withRowHeaders: PropTypes.bool,
     onRowSelected: PropTypes.func,
-    doubleClick: PropTypes.func
+    doubleClick: PropTypes.func,
+    minimal: PropTypes.bool,
+    dark: PropTypes.bool
   }
   renderCell(field, index, row) {
     const { entities, customRender } = this.props
@@ -169,12 +171,24 @@ class body extends Component {
     }
   }
 
+  getClassName(dark, minimal) {
+    if (dark && minimal) {
+      return 'dark-minimal'
+    } else if (dark) {
+      return 'dark'
+    } else if (minimal) {
+      return 'minimal'
+    } else {
+      return 'data-table'
+    }
+  }
+
   render() {
-    const { store } = this.props
+    const { store, dark, minimal } = this.props
     return (
       <table
         id={store.id}
-        className='dark'
+        className={this.getClassName(dark, minimal)}
       >
         <thead className=''>
           <Thead {...this.props} />
